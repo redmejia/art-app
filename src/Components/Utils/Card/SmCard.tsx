@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
     imageContainer: {
         display: 'flex',
         // flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // height: '100%',
     },
     imageStyle: {
         height: 220,
