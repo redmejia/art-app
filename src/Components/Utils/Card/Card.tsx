@@ -10,7 +10,7 @@ export type CardProps = {
     BodyStyle?: object;
 }
 
-export const Card = ({ Image, Title, Description, BorderStyle, BodyStyle, }: CardProps) => {
+const Card = ({ Image, Title, Description, BorderStyle, BodyStyle, }: CardProps) => {
     return (
         <View style={{ ...styles.card, ...BorderStyle }}>
             <View>
@@ -37,3 +37,5 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
     },
 })
+
+export default Card;
