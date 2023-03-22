@@ -81,12 +81,13 @@ const styles = StyleSheet.create({
         // borderRadius: 15,
     },
     textCenterArt: {
+        color : 'black',
         textAlign: 'center',
         fontSize: 19,
         fontWeight: '400'
-
     },
     textCenterArtist: {
+        color :'black',
         textAlign: 'center',
         fontSize: 15,
         fontWeight: '200'

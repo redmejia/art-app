@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         borderRadius : 40
     },
     textEventDay: {
+        color: 'black',
         position: 'relative',
         fontSize: 42,
         textAlign: 'center',
