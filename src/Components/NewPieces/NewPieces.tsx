@@ -10,8 +10,9 @@ export type NewPieces = {
 const Render = ({ Id, PieceName, Artist, Url }: NewPieces) => {
     return (
 
-        <View style={styles.column}>
+        <View style={styles.column} key={Id}>
             <Image
+                key={Id}
                 style={styles.image}
                 source={Url}
             />
@@ -28,13 +29,21 @@ const newPieces: NewPieces[] = [
     { Id: 2, PieceName: "Two", Artist: "Jose", Url: require('../public/New/02.png') },
     { Id: 3, PieceName: "Three", Artist: "Jose", Url: require('../public/New/03.png') },
     { Id: 4, PieceName: "Four", Artist: "Jose", Url: require('../public/New/04.png') },
-    { Id: 5, PieceName: "Five", Artist: "Jose", Url: require('../public/New/04.png') },
-
+    { Id: 5, PieceName: "Five", Artist: "Jose", Url: require('../public/New/05.png') },
 ]
 const NewPieces = () => {
     const newArt = newPieces.map(a => {
-        return <Render Id={a.Id} Artist={a.Artist} PieceName={a.PieceName} Url={a.Url} />
+        return (
+            <Render
+                key={a.Id}
+                Id={a.Id}
+                Artist={a.Artist}
+                PieceName={a.PieceName}
+                Url={a.Url}
+            />
+        )
     })
+
     return (
 
         <View style={styles.container}>
@@ -74,14 +83,14 @@ const styles = StyleSheet.create({
     textCenterArt: {
         textAlign: 'center',
         fontSize: 19,
-        fontWeight : '400'
+        fontWeight: '400'
 
     },
     textCenterArtist: {
         textAlign: 'center',
         fontSize: 15,
-        fontWeight : '200'
-        
+        fontWeight: '200'
+
     },
 
 })

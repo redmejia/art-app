@@ -16,7 +16,7 @@ import {
 	ScrollView,
 	SafeAreaView
 } from 'react-native';
-import SmCard from './src/Components/Utils/Card/SmCard';
+// import SmCard from './src/Components/Utils/Card/SmCard';
 import SxCard from './src/Components/Utils/Card/SxCard';
 import Header from './src/Components/Header/Header';
 import Event from './src/Components/Event/Event';
@@ -40,7 +40,7 @@ const artistData: Artists[] = [
 
 const Render = ({ name, description }: Artists) => {
 	return (
-		<TouchableOpacity
+		<TouchableOpacity key={name}
 			style={styles.artistButton}
 			onPress={() => {
 				null
@@ -58,7 +58,7 @@ const Render = ({ name, description }: Artists) => {
 
 function App(): JSX.Element {
 	const TopFourArtist = artistData.map(a => (
-		<Render name={a.name} description={a.description} />
+		<Render key={a.name} name={a.name} description={a.description} />
 	))
 	return (
 
@@ -106,7 +106,7 @@ function App(): JSX.Element {
 
 				<Text style={styles.textArtist}>New Art</Text>
 				{/* <View style={styles.containerNewArt}> */}
-					<NewPieces />
+					<NewPieces/>
 				{/* </View> */}
 
 				{/* <View style={{ flex: 2, backgroundColor: '#fff' }} >

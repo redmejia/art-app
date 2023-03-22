@@ -19,7 +19,7 @@ const Header = (): JSX.Element => {
             horizontal={true}
             data={data}
             renderItem={({ item }) =>
-                <View style={{ marginLeft: 20 }}>
+                <View style={{ marginLeft: 20 }} key={item.src}>
                     <SmCard
                         Title={item.title}
                         Src={item.src}
