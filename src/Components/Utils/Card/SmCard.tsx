@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
         // flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingBottom :15,
         // height: '100%',
     },
     imageStyle: {
-        height: 220,
-        width: 150,
+        height: 90,
+        width: 90,
         borderWidth: 0,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
+        borderRadius : 20,
+        // resizeMode : 'contain'
+        
     },
 
     textTitle: {
