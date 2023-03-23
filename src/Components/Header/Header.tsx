@@ -12,8 +12,8 @@ const data: Mockdata[] = [
 	{ src: require('../public/dan-farrell-4.png'), title: 'Abstract' },
     { src: require('../public/05.png'), title: 'Graffiti' }
 ]
-
 const Header = (): JSX.Element => {
+    
     return (
         <FlatList
             horizontal={true}

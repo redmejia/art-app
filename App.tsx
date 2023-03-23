@@ -21,6 +21,7 @@ import SxCard from './src/Components/Utils/Card/SxCard';
 import Header from './src/Components/Header/Header';
 import Event from './src/Components/Event/Event';
 import NewPieces from './src/Components/NewPieces/NewPieces';
+import Room from './src/Components/AuctionRoom/Room';
 
 
 type Artists = {
@@ -69,83 +70,83 @@ function App(): JSX.Element {
 		// ]}
 		// 	>
 		// <View>
-		<SafeAreaView
-			style={{ flex: 1 }}
-		>
-			<View style={styles.topOptionArt} >
-				<Header />
-			</View>
-			<ScrollView
-				style={{ paddingBottom: 10 }}
-			>
+		// <SafeAreaView
+		// 	style={{ flex: 1 }}
+		// >
+		// 	<View style={styles.topOptionArt} >
+		// 		<Header />
+		// 	</View>
+		// 	<ScrollView
+		// 		style={{ paddingBottom: 10 }}
+		// 	>
 
-				<Text style={styles.textArtist}>Upcoming Event</Text>
+		// 		<Text style={styles.textArtist}>Upcoming Event</Text>
 
-				<View style={styles.containerDos} >
-					<Event />
-					{/* <View style={styles.artistList} >
-						<FlatList
-							horizontal={false}
-							data={artistData}
-							renderItem={({ item }) => <Render name={item.name} description={item.description} />}
-						/>
+		// 		<View style={styles.containerDos} >
+		// 			<Event />
+		// 			{/* <View style={styles.artistList} >
+		// 				<FlatList
+		// 					horizontal={false}
+		// 					data={artistData}
+		// 					renderItem={({ item }) => <Render name={item.name} description={item.description} />}
+		// 				/>
 
-					</View> */}
+		// 			</View> */}
 
-					{/* <SxCard
-						Name={"ME"}
-						Description={"description"}
-					/> */}
-				</View>
-				<Text style={styles.textArtist}>Artists</Text>
-				<View style={styles.containerArtist}>
-					<ScrollView horizontal={true} >
-						{TopFourArtist}
-					</ScrollView>
-				</View>
+		// 			{/* <SxCard
+		// 				Name={"ME"}
+		// 				Description={"description"}
+		// 			/> */}
+		// 		</View>
+		// 		<Text style={styles.textArtist}>Artists</Text>
+		// 		<View style={styles.containerArtist}>
+		// 			<ScrollView horizontal={true} >
+		// 				{TopFourArtist}
+		// 			</ScrollView>
+		// 		</View>
 
-				<Text style={styles.textArtist}>New Art</Text>
-				{/* <View style={styles.containerNewArt}> */}
-					<NewPieces/>
-				{/* </View> */}
+		// 		<Text style={styles.textArtist}>New Art</Text>
+		// 		{/* <View style={styles.containerNewArt}> */}
+		// 			<NewPieces/>
+		// 		{/* </View> */}
 
-				{/* <View style={{ flex: 2, backgroundColor: '#fff' }} >
-				<ScrollView 
-					horizontal={true}
-				>
-					<View
-						style={{ padding: 23 }}
-					>
+		// 		{/* <View style={{ flex: 2, backgroundColor: '#fff' }} >
+		// 		<ScrollView 
+		// 			horizontal={true}
+		// 		>
+		// 			<View
+		// 				style={{ padding: 23 }}
+		// 			>
 
-						<SxCard
-							Name={"ME"}
-							Description={"description"}
-						/>
-					</View>
-					<View
-						style={{ padding: 23 }}
+		// 				<SxCard
+		// 					Name={"ME"}
+		// 					Description={"description"}
+		// 				/>
+		// 			</View>
+		// 			<View
+		// 				style={{ padding: 23 }}
 
-					>
+		// 			>
 
-						<SxCard
-							Name={"ME"}
-							Description={"description"}
-						/>
-						<SxCard
-							Name={"ME"}
-							Description={"description"}
-						/>
-					</View>
-				</ScrollView>
-			</View> */}
+		// 				<SxCard
+		// 					Name={"ME"}
+		// 					Description={"description"}
+		// 				/>
+		// 				<SxCard
+		// 					Name={"ME"}
+		// 					Description={"description"}
+		// 				/>
+		// 			</View>
+		// 		</ScrollView>
+		// 	</View> */}
 
 
 
-			</ScrollView>
-		</SafeAreaView>
+		// 	</ScrollView>
+		// </SafeAreaView>
 
 		// </View>
-
+		<Room />
 
 		// </View>
 	);
