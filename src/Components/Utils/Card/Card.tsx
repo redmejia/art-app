@@ -2,17 +2,17 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 export type CardProps = {
-    Image?: JSX.Element;
+    Image?: React.ReactNode;
     Title?: React.ReactNode;
     Description?: React.ReactNode;
-    BorderStyle?: object;
+    CardStyle?: object;
     ImageStyle?: object;
     BodyStyle?: object;
 }
 
-const Card = ({ Image, Title, Description, BorderStyle, BodyStyle, }: CardProps) => {
+const Card = ({ Image, Title, Description, CardStyle, BodyStyle, }: CardProps) => {
     return (
-        <View style={{ ...styles.card, ...BorderStyle }}>
+        <View style={{ ...styles.card, ...CardStyle }}>
             <View>
                 {Image}
             </View>
@@ -26,15 +26,10 @@ const Card = ({ Image, Title, Description, BorderStyle, BodyStyle, }: CardProps)
 
 const styles = StyleSheet.create({
     card: {
-        height: 200,
-        width: 200,
-        padding: 8,
-        borderColor: 'black',
-        borderWidth: 1,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
+        height: 430,
+        width: 370,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 })
 
