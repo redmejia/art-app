@@ -47,11 +47,13 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius : 20,
     },
     textName: {
+        color : '#000',
         marginLeft: 20,
         fontSize: 25,
         fontWeight: "400"
     },
     textDescription : {
+        color : '#000',
         marginLeft : 20,
         fontSize : 15,
         fontWeight: "300"
