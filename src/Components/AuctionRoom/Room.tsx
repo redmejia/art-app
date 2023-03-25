@@ -28,7 +28,7 @@ const Render = (p: AutionPieces) => {
                 BodyStyle={styles.bodyStyle}
                 Image={
                     <Image
-                        style={{ height: 320, width: 350, resizeMode: 'contain', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}
+                        style={styles.imageStyle}
                         source={p.Src}
                     />}
                 Title={
@@ -51,13 +51,17 @@ const Room = (): JSX.Element => {
             style={styles.container}
         >
             <Text style={styles.welcomeText}>Welcome</Text>
-            <Divider />
+            <Divider Styles={styles.divider} />
             <View
                 style={styles.artContainer}
             >
                 <FlatList
                     data={data}
-                    renderItem={({ item }) => <Render Artist={item.Artist} Description={item.Description} Src={item.Src} />}
+                    renderItem={({ item }) => <Render
+                        Artist={item.Artist}
+                        Description={item.Description}
+                        Src={item.Src} />
+                    }
                 />
             </View>
         </SafeAreaView>
@@ -66,7 +70,12 @@ const Room = (): JSX.Element => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor : '#f2f2f2'
+        // backgroundColor: '#f2f2f2'
+        backgroundColor: '#fff'
+
+    },
+    divider : {
+        backgroundColor : "#f2f2f2"
     },
     welcomeText: {
         color: '#000',
@@ -94,6 +103,14 @@ const styles = StyleSheet.create({
         width: 350,
         padding: 8,
         borderRadius: 30,
+    },
+    imageStyle: {
+        height: 320,
+        width: 350,
+        resizeMode: 'contain',
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     textTitle: {
         textAlign: 'center',
