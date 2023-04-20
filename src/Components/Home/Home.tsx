@@ -13,7 +13,7 @@ import Header from "../Header/Header";
 import Event from "../Event/Event";
 import SxCard from "../Utils/Card/SxCard";
 import NewPieces from "../NewPieces/NewPieces";
-import { useArtists } from "../../Graphql/ghplHook/useArtists";
+import { useArtsList } from "../../Graphql/ghplHook/useArtists";
 import { Artists } from "../../Graphql/types";
 
 
@@ -38,7 +38,7 @@ const Render = ({ id, name, profession }: Artists) => {
 
 const Home = (): JSX.Element => {
 
-    const { myList, loading, error } = useArtists()
+    const { artistsList, loading, error } = useArtsList()
 
 
 
@@ -59,7 +59,7 @@ const Home = (): JSX.Element => {
 
 
 
-    const ArtistList = myList.map((a: Artists) => {
+    const ArtistList = artistsList.map((a: Artists) => {
         return <Render key={a.id} id={a.id} name={a.name} profession={a.profession} />
     })
 
@@ -89,7 +89,7 @@ const Home = (): JSX.Element => {
 
                 <Text style={styles.textArtist}>New Art</Text>
                 {/* <View style={styles.containerNewArt}> */}
-                <NewPieces />
+                <NewPieces /> 
                 {/* </View> */}
 
             </ScrollView>
