@@ -39,14 +39,14 @@ const BottomTabNavigator = (): JSX.Element => {
                 },
 
                 tabBarStyle: {
-                     height: 80,
+                    height: 80,
                     // paddingHorizontal: 15,
                     paddingTop: 10,
                     backgroundColor: '#A74592',
                     // position: 'absolute',
                     borderTopWidth: 0,
                     borderTopLeftRadius: 30
-        
+
                 },
                 headerStyle: {
                     backgroundColor: "#A74592",
@@ -55,10 +55,10 @@ const BottomTabNavigator = (): JSX.Element => {
 
             })}
         >
-            <BottomTab.Screen name="Home" children={Home}
+            <BottomTab.Screen name="Home" component={Home}
                 options={{ title: "" }}
             />
-            <BottomTab.Screen name="Room" children={Room}
+            <BottomTab.Screen name="Room" component={Room}
                 options={{ title: "" }}
             />
         </BottomTab.Navigator>
@@ -67,9 +67,11 @@ const BottomTabNavigator = (): JSX.Element => {
 
 const Main = () => {
     return (
-        <NavigationContainer>
-            <BottomTabNavigator />
-        </NavigationContainer>
+        <>
+            <NavigationContainer>
+                <BottomTabNavigator />
+            </NavigationContainer>
+        </>
     );
 }
 

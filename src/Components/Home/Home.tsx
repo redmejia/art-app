@@ -6,84 +6,94 @@ import {
     ScrollView,
     TouchableOpacity,
     Platform,
-    StyleSheet
+    StyleSheet,
+    FlatList
 } from "react-native";
 import Header from "../Header/Header";
 import Event from "../Event/Event";
 import SxCard from "../Utils/Card/SxCard";
 import NewPieces from "../NewPieces/NewPieces";
+import { useArtists } from "../../Graphql/ghplHook/useArtists";
+import { Artists } from "../../Graphql/types";
 
 
-type Artists = {
-    name: string;
-    description: string;
-}
-
-
-
-
-const artistData: Artists[] = [
-    { name: "Reynaldo", description: "Developer" },
-    { name: "Jose", description: "Developer" },
-    { name: "Sofia", description: "Developer" },
-    { name: "Sonia", description: "Developer" },
-]
-
-const Render = ({ name, description }: Artists) => {
+const Render = ({ id, name, profession }: Artists) => {
     return (
-        <TouchableOpacity key={name}
-            style={styles.artistButton}
-            onPress={() => {
-                null
-            }}
-        >
-            <SxCard
-                Name={name}
-                Description={description}
-            />
-
-        </TouchableOpacity>
+        <View key={id}>
+            <TouchableOpacity key={name}
+                style={styles.artistButton}
+                onPress={() => {
+                    null
+                }}
+            >
+                <SxCard
+                    Name={name}
+                    Description={profession}
+                />
+            </TouchableOpacity>
+        </View>
     )
 }
 
 
 const Home = (): JSX.Element => {
 
-    const TopFourArtist = artistData.map(a => (
-        <Render key={a.name} name={a.name} description={a.description} />
-    ))
+    const { myList, loading, error } = useArtists()
+
+
+
+    if (loading) {
+        return (
+            <Text>Loading...</Text>
+        )
+    }
+
+    if(error) {
+        console.log(error);
+
+        return(
+            <Text>Error  </Text>
+        )
+    }
+
+
+
+
+    const ArtistList = myList.map((a: Artists) => {
+        return <Render key={a.id} id={a.id} name={a.name} profession={a.profession} />
+    })
 
     return (
-        
-            <SafeAreaView
-                style={styles.container}
+        <SafeAreaView
+            style={styles.container}
+        >
+            <View style={styles.topOptionArt} >
+                <Header />
+            </View>
+            <ScrollView
+                style={{ paddingBottom: 10 }}
             >
-                <View style={styles.topOptionArt} >
-                    <Header />
+
+                <Text style={styles.textArtist}>Upcoming Event</Text>
+
+                <View style={styles.containerDos} >
+                    <Event />
                 </View>
-                <ScrollView
-                    style={{ paddingBottom: 10 }}
-                >
+                <Text style={styles.textArtist}>Artists</Text>
+                {/* <View style={styles.containerArtist}> */}
 
-                    <Text style={styles.textArtist}>Upcoming Event</Text>
-
-                    <View style={styles.containerDos} >
-                        <Event />
-                    </View>
-                    <Text style={styles.textArtist}>Artists</Text>
-                    <View style={styles.containerArtist}>
-                        <ScrollView horizontal={true} >
-                            {TopFourArtist}
-                        </ScrollView>
-                    </View>
-
-                    <Text style={styles.textArtist}>New Art</Text>
-                    {/* <View style={styles.containerNewArt}> */}
-                    <NewPieces />
-                    {/* </View> */}
-
+                <ScrollView horizontal={true} >
+                    {ArtistList}
                 </ScrollView>
-            </SafeAreaView>
+
+
+                <Text style={styles.textArtist}>New Art</Text>
+                {/* <View style={styles.containerNewArt}> */}
+                <NewPieces />
+                {/* </View> */}
+
+            </ScrollView>
+        </SafeAreaView>
 
     )
 }
@@ -93,7 +103,7 @@ export default Home;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor : '#fff',
+        backgroundColor: '#fff',
         flex: 1,
         // padding: 20,
         // margin : 10,
