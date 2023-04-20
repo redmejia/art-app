@@ -2,6 +2,7 @@ import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-nat
 import Divider from "../Utils/Divider/Divider";
 import Card from "../Utils/Card/Card";
 
+
 type AutionPieces = {
     Src?: string | any | undefined,
     Artist?: string,
@@ -46,6 +47,7 @@ const Render = (p: AutionPieces) => {
 
 
 const Room = (): JSX.Element => {
+
     return (
         <SafeAreaView
             style={styles.container}
@@ -74,8 +76,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
 
     },
-    divider : {
-        backgroundColor : "#f2f2f2"
+    divider: {
+        backgroundColor: "#f2f2f2"
     },
     welcomeText: {
         color: '#000',
