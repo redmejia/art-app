@@ -1,24 +1,19 @@
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { ARTIST_LIST } from "../query";
-import { Artists } from "../types";
+import { ART_ARTISTS } from "../query";
+import { Art, Artists } from "../types";
 
 
-
-export const useArtists = () => {
-    const { data, loading, error } = useQuery(ARTIST_LIST)
-    const [myList, setList] = useState<Artists[]>([])
+export const useArtsList = () => {
+    const { data, loading, error } = useQuery(ART_ARTISTS)
+    const [artistsList, setArtistsList] = useState<Artists[]>([])
+    const [newArtList, setNewArtList] = useState<Art[]>([])
 
     useEffect(() => {
         if (!data) return
-    
-        console.log(data);
-        setList(data.list)
-        
+        setArtistsList(data.list)
+        setNewArtList(data.art_list);
     }, [data])
 
-    console.log("data ", data);
-    
-
-    return { myList, loading, error }
+    return { artistsList, newArtList, loading, error }
 }
