@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     Platform,
     StyleSheet,
-    FlatList
 } from "react-native";
 import Header from "../Header/Header";
 import Event from "../Event/Event";
@@ -15,6 +14,7 @@ import SxCard from "../Utils/Card/SxCard";
 import NewPieces from "../NewPieces/NewPieces";
 import { useArtsList } from "../../Graphql/ghplHook/useArtists";
 import { Artists } from "../../Graphql/types";
+import { Spiner } from "../Utils/Spiner/Spiner";
 
 
 const Render = ({ id, name, profession }: Artists) => {
@@ -44,15 +44,19 @@ const Home = (): JSX.Element => {
 
     if (loading) {
         return (
-            <Text>Loading...</Text>
+            <View style={styles.continerDataLoading}>
+                <Spiner Size="large" Color="#A74592" />
+            </View>
         )
     }
 
     if(error) {
-        console.log(error);
 
         return(
-            <Text>Error  </Text>
+            <View style={styles.continerDataLoading}>
+                <Text style={styles.textNetConnection}>Connection Failed</Text>
+                <Spiner Size="large" Color="red" />
+            </View>
         )
     }
 
@@ -159,5 +163,15 @@ const styles = StyleSheet.create({
     },
     artistButton: {
         padding: Platform.OS === 'ios' ? 3 : 0,
+    },
+    continerDataLoading : {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textNetConnection : {
+        padding : 10,
+        fontSize: 20,
+        fontWeight:Platform.OS === "ios" ?"300": "500", 
     }
 });
