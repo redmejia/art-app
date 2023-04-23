@@ -15,6 +15,7 @@ import NewPieces from "../NewPieces/NewPieces";
 import { useArtsList } from "../../Graphql/ghplHook/useArtists";
 import { Artists } from "../../Graphql/types";
 import { Spiner } from "../Utils/Spiner/Spiner";
+import DataHandler from "../HandleDataState/DataHandler";
 
 
 const Render = ({ id, name, profession }: Artists) => {
@@ -42,23 +43,22 @@ const Home = (): JSX.Element => {
 
 
 
-    if (loading) {
+    if (loading || error) {
         return (
-            <View style={styles.continerDataLoading}>
-                <Spiner Size="large" Color="#A74592" />
-            </View>
+            <DataHandler
+                IsLoading={loading}
+                // IsError={error}
+                LoadingDisplay={
+                    <Spiner Size="large" Color="#A74592" />
+                }
+                ErrorDisplay={
+                    <Spiner Size="large" Color="red" />
+                }
+            />
         )
     }
 
-    if(error) {
 
-        return(
-            <View style={styles.continerDataLoading}>
-                <Text style={styles.textNetConnection}>Connection Failed</Text>
-                <Spiner Size="large" Color="red" />
-            </View>
-        )
-    }
 
 
 
@@ -93,7 +93,7 @@ const Home = (): JSX.Element => {
 
                 <Text style={styles.textArtist}>New Art</Text>
                 {/* <View style={styles.containerNewArt}> */}
-                <NewPieces /> 
+                <NewPieces />
                 {/* </View> */}
 
             </ScrollView>
@@ -164,14 +164,4 @@ const styles = StyleSheet.create({
     artistButton: {
         padding: Platform.OS === 'ios' ? 3 : 0,
     },
-    continerDataLoading : {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    textNetConnection : {
-        padding : 10,
-        fontSize: 20,
-        fontWeight:Platform.OS === "ios" ?"300": "500", 
-    }
 });

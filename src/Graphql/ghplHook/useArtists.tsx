@@ -7,7 +7,7 @@ import { Art, Artists } from "../types";
 export const useArtsList = () => {
     const { data, loading, error } = useQuery(ART_ARTISTS)
     const [artistsList, setArtistsList] = useState<Artists[]>([])
-    const [newArtList, setNewArtList] = useState<Art[]>([])
+    const [newArtList, setNewArtList] = useState<Art[]>([]) // show incoming art for event
 
     useEffect(() => {
         if (!data) return

@@ -1,6 +1,8 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import { useArtsList } from "../../Graphql/ghplHook/useArtists";
 import { Art } from "../../Graphql/types";
+import DataHandler from "../HandleDataState/DataHandler";
+import { Spiner } from "../Utils/Spiner/Spiner";
 
 const Render = ({ art_id, artist, art_description, photo_url }: Art) => {
 
@@ -22,17 +24,18 @@ const NewPieces = () => {
 
     const { newArtList, loading, error } = useArtsList()
 
-    if (loading) {
+    if (loading || error) {
         return (
-            <Text>Loading...</Text>
-        )
-    }
-
-    if (error) {
-        console.log(error);
-
-        return (
-            <Text>Error  </Text>
+            <DataHandler
+                IsLoading={loading}
+                // IsError={error}
+                LoadingDisplay={
+                    <Spiner Size="large" Color="#A74592" />
+                }
+                ErrorDisplay={
+                    <Spiner Size="large" Color="red" />
+                }
+            />
         )
     }
 

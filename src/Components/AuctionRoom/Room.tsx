@@ -1,27 +1,18 @@
 import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Divider from "../Utils/Divider/Divider";
 import Card from "../Utils/Card/Card";
+import { useNewArt } from "../../Graphql/ghplHook/useNewArt";
+import DataHandler from "../HandleDataState/DataHandler";
+import { Spiner } from "../Utils/Spiner/Spiner";
+import { Art } from "../../Graphql/types";
 
 
-type AutionPieces = {
-    Src?: string | any | undefined,
-    Artist?: string,
-    Description?: string,
-}
 
-const data: AutionPieces[] = [
-    { Src: require('../public/New/02.png'), Artist: 'Reynaldo', Description: "4\" x 4\"" },
-    { Src: require('../public/New/03.png'), Artist: 'Jose', Description: "8\" x 8\"", },
-    { Src: require('../public/New/03.png'), Artist: 'Sonia', Description: "10\" x 10\"", },
-    { Src: require('../public/New/02.png'), Artist: 'Nicolle', Description: "6\" x 6\"", },
-    { Src: require('../public/New/04.png'), Artist: 'Cristina', Description: "6\" x 6\"" },
-]
-
-const Render = (p: AutionPieces) => {
+const Render = ({art_id, artist, art_description, photo_url } : Art) => {
 
     return (
         <View
-            key={p.Artist}
+            key={art_id}
             style={{ marginTop: 20 }}
         >
             <Card
@@ -30,13 +21,13 @@ const Render = (p: AutionPieces) => {
                 Image={
                     <Image
                         style={styles.imageStyle}
-                        source={p.Src}
+                        source={{uri:photo_url}}
                     />}
                 Title={
-                    <Text style={styles.textTitle}>{p.Artist}</Text>
+                    <Text style={styles.textTitle}>{artist?.name}</Text>
                 }
                 Description={
-                    <Text style={styles.textDescription}>{p.Description}</Text>
+                    <Text style={styles.textDescription}>{art_description}</Text>
                 }
             />
         </View>
@@ -48,21 +39,43 @@ const Render = (p: AutionPieces) => {
 
 const Room = (): JSX.Element => {
 
+    const { newArt, loading, error } = useNewArt();
+
+    if (loading || error) {
+        return (
+            <DataHandler
+                IsLoading={loading}
+                // IsError={error}
+                LoadingDisplay={
+                    <Spiner Size="large" Color="#A74592" />
+                }
+                ErrorDisplay={
+                    <Spiner Size="large" Color="red" />
+                }
+            />
+        )
+    }
+
+    
+
     return (
         <SafeAreaView
             style={styles.container}
         >
+
             <Text style={styles.welcomeText}>Welcome</Text>
             <Divider Styles={styles.divider} />
             <View
                 style={styles.artContainer}
             >
                 <FlatList
-                    data={data}
+                    data={newArt}
                     renderItem={({ item }) => <Render
-                        Artist={item.Artist}
-                        Description={item.Description}
-                        Src={item.Src} />
+                        art_id={item.art_id}
+                        artist={item.artist}
+                        art_description={item.art_description}
+                        photo_url={item.photo_url}
+                        />
                     }
                 />
             </View>
