@@ -5,10 +5,11 @@ import { useNewArt } from "../../Graphql/ghplHook/useNewArt";
 import DataHandler from "../HandleDataState/DataHandler";
 import { Spiner } from "../Utils/Spiner/Spiner";
 import { Art } from "../../Graphql/types";
+import { useEffect, useState } from "react";
 
 
 
-const Render = ({art_id, artist, art_description, photo_url } : Art) => {
+const Render = ({ art_id, artist, art_description, photo_url }: Art) => {
 
     return (
         <View
@@ -21,7 +22,7 @@ const Render = ({art_id, artist, art_description, photo_url } : Art) => {
                 Image={
                     <Image
                         style={styles.imageStyle}
-                        source={{uri:photo_url}}
+                        source={{ uri: photo_url }}
                     />}
                 Title={
                     <Text style={styles.textTitle}>{artist?.name}</Text>
@@ -56,7 +57,7 @@ const Room = (): JSX.Element => {
         )
     }
 
-    
+
 
     return (
         <SafeAreaView
@@ -114,12 +115,13 @@ const styles = StyleSheet.create({
     bodyStyle: {
         borderColor: '#8c8c8c',
         borderWidth: 1,
-        height: 75,
+        height: 50,
         width: 350,
-        padding: 8,
+        // padding: 8,
         borderRadius: 30,
     },
     imageStyle: {
+        margin : 10,
         height: 320,
         width: 350,
         resizeMode: 'contain',
