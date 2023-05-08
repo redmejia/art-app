@@ -3,6 +3,7 @@ import { useArtsList } from "../../Graphql/ghplHook/useArtists";
 import { Art } from "../../Graphql/types";
 import DataHandler from "../HandleDataState/DataHandler";
 import { Spiner } from "../Utils/Spiner/Spiner";
+import { useNewArtList } from "../../Graphql/ghplHook/useNewArtList";
 
 const Render = ({ art_id, artist, art_description, photo_url }: Art) => {
 
@@ -22,7 +23,7 @@ const Render = ({ art_id, artist, art_description, photo_url }: Art) => {
 
 const NewPieces = () => {
 
-    const { newArtList, loading, error } = useArtsList()
+    const {art , loading, error} = useNewArtList(5) // display nth number of new art
 
     if (loading || error) {
         return (
@@ -39,7 +40,7 @@ const NewPieces = () => {
         )
     }
 
-    const newArt = newArtList.map((a: Art) => {
+    const newArt = art.map((a: Art) => {
         return (
             <Render
                 key={a.art_id}
