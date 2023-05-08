@@ -2,9 +2,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
 import Room from "../AuctionRoom/Room";
 import Home from "../Home/Home";
-import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Details } from "../ArtDetails/Deatails";
 
 const BottomTab = createBottomTabNavigator()
+const stack = createStackNavigator()
 
 const BottomTabNavigator = (): JSX.Element => {
     return (
@@ -69,7 +72,20 @@ const Main = () => {
     return (
         <>
             <NavigationContainer>
-                <BottomTabNavigator />
+                {/* <BottomTabNavigator /> */}
+                <stack.Navigator>
+                    <stack.Screen 
+                        name="bottom" 
+                        component={BottomTabNavigator}
+                        options={{
+                            headerShown : false,
+                            title : "Room"
+                        }}
+                    />
+                    <stack.Screen name="details" component={Details} 
+                        options={{title: ""}}
+                    />
+                </stack.Navigator>
             </NavigationContainer>
         </>
     );
