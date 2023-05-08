@@ -61,7 +61,7 @@ const Home = (): JSX.Element => {
 
 
 
-
+    
 
     const ArtistList = artistsList.map((a: Artists) => {
         return <Render key={a.id} id={a.id} name={a.name} profession={a.profession} />
