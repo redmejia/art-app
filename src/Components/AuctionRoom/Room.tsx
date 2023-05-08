@@ -1,41 +1,39 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Divider from "../Utils/Divider/Divider";
 import Card from "../Utils/Card/Card";
 import { useNewArt } from "../../Graphql/ghplHook/useNewArt";
 import DataHandler from "../HandleDataState/DataHandler";
 import { Spiner } from "../Utils/Spiner/Spiner";
 import { Art } from "../../Graphql/types";
-import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 
 
-const Render = ({ art_id, artist, art_description, photo_url }: Art) => {
+const Render = ({ art_id, photo_url }: Art) => {
+    const navigate: any = useNavigation()
 
     return (
         <View
             key={art_id}
             style={{ marginTop: 20 }}
         >
-            <Card
-                CardStyle={styles.cardStyle}
-                BodyStyle={styles.bodyStyle}
-                Image={
-                    <Image
-                        style={styles.imageStyle}
-                        source={{ uri: photo_url }}
-                    />}
-                Title={
-                    <Text style={styles.textTitle}>{artist?.name}</Text>
-                }
-                Description={
-                    <Text style={styles.textDescription}>{art_description}</Text>
-                }
-            />
+            <TouchableOpacity
+                onPress={() => navigate.navigate('details', { art_id })}
+            >
+
+                <Card
+                    CardStyle={styles.cardStyle}
+                    Image={
+                        <Image
+                            style={styles.imageStyle}
+                            source={{ uri: photo_url }}
+                        />
+                    }
+                />
+            </TouchableOpacity>
         </View>
     )
 }
-
-
 
 
 const Room = (): JSX.Element => {
@@ -71,12 +69,7 @@ const Room = (): JSX.Element => {
             >
                 <FlatList
                     data={newArt}
-                    renderItem={({ item }) => <Render
-                        art_id={item.art_id}
-                        artist={item.artist}
-                        art_description={item.art_description}
-                        photo_url={item.photo_url}
-                        />
+                    renderItem={({ item }) => <Render art_id={item.art_id} artist={item.artist} art_description={item.art_description} photo_url={item.photo_url} />
                     }
                 />
             </View>
@@ -91,7 +84,7 @@ const styles = StyleSheet.create({
 
     },
     divider: {
-        backgroundColor: "#f2f2f2"
+        backgroundColor: "#A74592"
     },
     welcomeText: {
         color: '#000',
@@ -111,36 +104,17 @@ const styles = StyleSheet.create({
         borderColor: '#f2f2f2',
         borderWidth: 1,
         borderRadius: 10,
-    },
-    bodyStyle: {
-        borderColor: '#8c8c8c',
-        borderWidth: 1,
-        height: 50,
-        width: 350,
-        // padding: 8,
-        borderRadius: 30,
+        borderTopColor : '#A74592', 
+        borderTopWidth : 2
     },
     imageStyle: {
-        margin : 10,
+        margin: 10,
         height: 320,
         width: 350,
         resizeMode: 'contain',
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    textTitle: {
-        textAlign: 'center',
-        color: '#000',
-        fontWeight: '700',
-        fontSize: 20,
-    },
-    textDescription: {
-        textAlign: 'center',
-        color: '#000',
-        fontWeight: '600',
-        fontSize: 16,
     }
-
 })
 export default Room;

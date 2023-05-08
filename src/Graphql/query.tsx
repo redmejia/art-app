@@ -34,3 +34,17 @@ query {
         art_description
     }
 }`;
+
+export const ART_PIECE = gql`
+query Art($art_id: String!) {
+    art(art_id: $art_id){
+        artist {
+            id
+            name
+            profession
+        }
+        art_id
+        photo_url 
+        art_description
+    }
+}`;
